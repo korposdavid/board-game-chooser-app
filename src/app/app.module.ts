@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { GameCardComponent } from './game-card/game-card.component';
 import { HeaderComponent } from './header/header.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
