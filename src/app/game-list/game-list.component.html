@@ -1,9 +1,6 @@
-<ul>
+<div>
 
-  <li *ngFor="let game of games">
+  <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
 
-     {{ game }}
+</div>
 
-  </li>
-
-</ul>
