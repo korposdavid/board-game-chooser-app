@@ -15,10 +15,10 @@ export class GameListComponent implements OnInit {
     this.getGameList('dkorp');
   }
 
-  private getGameList(id: string) {
+  private getGameList(username: string) {
     const parser = new DOMParser();
     let items: HTMLCollectionOf<Element>;
-    const linkToFetch = 'https://www.boardgamegeek.com/xmlapi2/collection?username=' + id;
+    const linkToFetch = 'https://www.boardgamegeek.com/xmlapi2/collection?excludesubtype=boardgameexpansion&username=' + username;
     this.http.get(linkToFetch, {responseType: 'text'}).subscribe(
       x => {
         items = parser.parseFromString(x, 'application/xml').getElementsByTagName('item');
