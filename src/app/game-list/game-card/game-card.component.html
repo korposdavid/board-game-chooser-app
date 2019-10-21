@@ -1,2 +1,11 @@
-<p> name:{{game.name }}, id:{{game.id}}, minimum = {{game.minPlayers}}, max= {{game.maxPlayers}} time={{game.playingTime}}</p>
-<img [src]="game.thumbnailPath" [alt]="game.name">
+<a href="#" class="list-group-item clearfix">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading" [innerText]="game.name"></h4>
+    <p class="list-group-item-text">{{game.minPlayers}} - {{game.maxPlayers}} players</p>
+    <p class="list-group-item-text">~{{game.playingTime}} minutes</p>
+
+  </div>
+  <span class="pull-right">
+        <img [src]="game.thumbnailPath" alt="{{game.name}}" class="img-responsive" style="max-height: 80px;">
+      </span>
+</a>
