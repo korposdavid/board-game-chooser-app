@@ -1,0 +1,15 @@
+<div class="col-sm-7 pull-right">
+  <form class="list-group-item" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="form-group">
+      <label for="player-count">Player Count</label>
+      <input type="text" id="player-count" class="form-control" ngModel name="player-count">
+    </div>
+    <div class="form-group">
+      <label for="playtime">Playtime</label>
+      <input type="text" id="playtime" class="form-control" ngModel name="playtime">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+  </form>
+</div>
