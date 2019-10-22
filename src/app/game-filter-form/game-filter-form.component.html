@@ -1,7 +1,7 @@
 <div class="col-sm-7 pull-right">
   <form class="list-group-item" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <label for="player-count">Player Count: {{playerCount.value == playerCount.max ? playerCount.value + '+' : playerCount.value}}</label>
-    <input type="range" id="player-count" #playerCount name="player-count" ngModel min="1" max="8" step="1">
+    <label for="count">Player Count: {{count.value == count.max ? count.value + '+' : count.value}}</label>
+    <input type="range" id="count" #count name="count" ngModel min="1" max="8" step="1">
 
     <label for="duration">Playtime: {{time.value == time.max ? time.value + ' hours' : (time.value == '0.5' || time.value == '1' ? time.value + ' hour' : time.value + ' hours')}} </label>
     <input type="range" id="duration" #time name="duration" ngModel min="0.5" max="5" step="0.5">

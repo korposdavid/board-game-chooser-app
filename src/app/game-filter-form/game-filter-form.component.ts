@@ -7,11 +7,15 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./game-filter-form.component.css']
 })
 export class GameFilterFormComponent implements OnInit {
-  playtimes: string[] = ['0-1 hour', '1-2 hours', '2+ hours'];
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm) {}
+  onSubmit(form: NgForm) {
+    const playerCount = form.controls.count.value;
+    const duration = form.controls.duration.value;
+    console.log(form.controls.duration.value);
+    console.log(form.controls.count.value);
+  }
 }
