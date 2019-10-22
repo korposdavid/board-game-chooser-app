@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Game} from './game.model';
 
@@ -7,12 +7,22 @@ selector: 'app-game-list',
 templateUrl: './game-list.component.html',
 styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent implements OnInit, OnChanges {
+  @Input() private durationFilter: number;
+  @Input() private countFilter: number;
+  @Input() private filtered: boolean;
   private games: Game[] = [];
+  private filteredGames: Game[];
   constructor(private http: HttpClient) {
   }
   ngOnInit() {
     this.getGameList('dkorp');
+    this.sortGameList();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.countFilter || changes.durationFilter) {
+      this.filterGameList();
+    }
   }
 
   private getGameList(username: string) {
@@ -28,5 +38,19 @@ export class GameListComponent implements OnInit {
           this.games.push(new Game(gameId, name, this.http));
         }
       });
+  }
+  private sortGameList() {
+    this.games.sort((a, b) => {
+      return a.playingTime > b.playingTime ? -1 : a.playingTime < b.playingTime ? 1 : 0;
+    });
+  }
+  private filterGameList() {
+    this.sortGameList();
+    this.filteredGames = [];
+    for (const game of this.games) {
+      if (game.minPlayers <= this.countFilter && game.maxPlayers >= this.countFilter && game.playingTime <= this.durationFilter * 60) {
+        this.filteredGames.push(game);
+      }
+    }
   }
 }

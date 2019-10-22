@@ -1,3 +1,8 @@
 <div class="col-sm-5 pull-left">
-  <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+  <ng-container *ngIf="filtered == false">
+    <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+  </ng-container>
+  <ng-container *ngIf="filtered == true">
+    <app-game-card *ngFor="let game of filteredGames" [game]="game"></app-game-card>
+  </ng-container>
 </div>

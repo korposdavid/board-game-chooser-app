@@ -8,4 +8,17 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   title = 'board-game-chooser-app';
+  private duration: number;
+  private playerCount: number;
+  private didFilter = false;
+
+  setDurationFilter($event: number) {
+    this.duration = $event;
+    this.didFilter = true;
+  }
+
+  setPlayerCountFilter($event: number) {
+    this.playerCount = $event;
+    this.didFilter = true;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -7,15 +7,16 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./game-filter-form.component.css']
 })
 export class GameFilterFormComponent implements OnInit {
+  @Output() duration = new EventEmitter<number>();
+  @Output() playerCount = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-    const playerCount = form.controls.count.value;
-    const duration = form.controls.duration.value;
-    console.log(form.controls.duration.value);
-    console.log(form.controls.count.value);
+    this.duration.emit(form.value.duration);
+    this.playerCount.emit(form.value.count);
   }
 }
