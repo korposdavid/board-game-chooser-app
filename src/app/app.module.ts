@@ -9,6 +9,7 @@ import { GameCardComponent } from './game-list/game-card/game-card.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { GameFilterFormComponent } from './game-filter-form/game-filter-form.component';
+import { BggUsernameFormComponent } from './bgg-username-form/bgg-username-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GameFilterFormComponent } from './game-filter-form/game-filter-form.com
     GameListComponent,
     GameCardComponent,
     HeaderComponent,
-    GameFilterFormComponent
+    GameFilterFormComponent,
+    BggUsernameFormComponent
   ],
   imports: [
     BrowserModule,
