@@ -6,8 +6,6 @@
     <app-game-card *ngFor="let game of filteredGames" [game]="game" (clickedGame)="setClickedGame($event)"></app-game-card>
   </ng-container>
 </div>
-<div class="col-sm-5">
-
+<div *ngIf="clickedGame" class="col-sm-7">
   <app-game-info [game]="clickedGame"></app-game-info>
-
 </div>
