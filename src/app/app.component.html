@@ -1,11 +1,10 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <app-game-filter-form (duration)="setDurationFilter($event)"
-                          (playerCount)="setPlayerCountFilter($event)"></app-game-filter-form>
     <app-bgg-username-form (username)="setUsername($event)"></app-bgg-username-form>
+    <app-game-filter-form *ngIf="username" (duration)="setDurationFilter($event)"
+                          (playerCount)="setPlayerCountFilter($event)"></app-game-filter-form>
   </div>
-
   <div class="row">
     <app-game-list [countFilter]="playerCount" [durationFilter]="duration" [filtered]="didFilter"
                    [username]="username"></app-game-list>
