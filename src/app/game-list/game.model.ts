@@ -1,5 +1,4 @@
 import {HttpClient} from '@angular/common/http';
-import {decode} from 'punycode';
 
 export class Game {
   imagePath: string;
@@ -10,6 +9,7 @@ export class Game {
   minAge: number;
   yearPublished: number;
   description: string;
+  categories: string[] = [];
 
   constructor(
     public id: string,
@@ -33,6 +33,13 @@ export class Game {
         this.playingTime = +parsedXML.getElementsByTagName('playingtime').item(0).getAttribute('value');
         this.minAge = +parsedXML.getElementsByTagName('minage').item(0).getAttribute('value');
         this.yearPublished = +parsedXML.getElementsByTagName('yearpublished').item(0).getAttribute('value');
+
+        const links = parsedXML.getElementsByTagName('link');
+        for (let i = 0; i < links.length; i++) {
+          if (links.item(i).getAttribute('type') === 'boardgamecategory') {
+            this.categories.push(links.item(i).getAttribute('value'));
+          }
+        }
       });
   }
 }
