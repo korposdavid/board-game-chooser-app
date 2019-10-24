@@ -1,8 +1,13 @@
 <div class="col-sm-5">
   <ng-container *ngIf="filtered == false">
-    <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+    <app-game-card *ngFor="let game of games" [game]="game" (clickedGame)="setClickedGame($event)"></app-game-card>
   </ng-container>
   <ng-container *ngIf="filtered == true">
-    <app-game-card *ngFor="let game of filteredGames" [game]="game"></app-game-card>
+    <app-game-card *ngFor="let game of filteredGames" [game]="game" (clickedGame)="setClickedGame($event)"></app-game-card>
   </ng-container>
+</div>
+<div class="col-sm-5">
+
+  <app-game-info [game]="clickedGame"></app-game-info>
+
 </div>

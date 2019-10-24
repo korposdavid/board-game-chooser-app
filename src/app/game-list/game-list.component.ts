@@ -1,24 +1,28 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Game} from './game.model';
 
 @Component({
-selector: 'app-game-list',
-templateUrl: './game-list.component.html',
-styleUrls: ['./game-list.component.css']
+  selector: 'app-game-list',
+  templateUrl: './game-list.component.html',
+  styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent implements OnInit, OnChanges {
   @Input() private durationFilter: number;
   @Input() private countFilter: number;
   @Input() private filtered: boolean;
   @Input() private username: string;
+  @Input() private clickedGame: Game;
   private games: Game[] = [];
   private filteredGames: Game[];
+
   constructor(private http: HttpClient) {
   }
+
   ngOnInit() {
     this.sortGameList();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.countFilter || changes.durationFilter) {
       this.filterGameList();
@@ -42,11 +46,13 @@ export class GameListComponent implements OnInit, OnChanges {
         }
       });
   }
+
   private sortGameList() {
     this.games.sort((a, b) => {
       return a.playingTime > b.playingTime ? -1 : a.playingTime < b.playingTime ? 1 : 0;
     });
   }
+
   private filterGameList() {
     this.sortGameList();
     this.filteredGames = [];
@@ -55,5 +61,10 @@ export class GameListComponent implements OnInit, OnChanges {
         this.filteredGames.push(game);
       }
     }
+  }
+
+  setClickedGame($event: Game) {
+    this.clickedGame = $event;
+    console.log(this.clickedGame);
   }
 }

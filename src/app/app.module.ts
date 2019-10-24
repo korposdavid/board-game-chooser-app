@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { GameFilterFormComponent } from './game-filter-form/game-filter-form.component';
 import { BggUsernameFormComponent } from './bgg-username-form/bgg-username-form.component';
+import { GameInfoComponent } from './game-list/game-info/game-info.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BggUsernameFormComponent } from './bgg-username-form/bgg-username-form.
     GameCardComponent,
     HeaderComponent,
     GameFilterFormComponent,
-    BggUsernameFormComponent
+    BggUsernameFormComponent,
+    GameInfoComponent
   ],
   imports: [
     BrowserModule,
