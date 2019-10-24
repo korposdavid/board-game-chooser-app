@@ -1,4 +1,5 @@
 import {HttpClient} from '@angular/common/http';
+import {decode} from 'punycode';
 
 export class Game {
   imagePath: string;
@@ -27,10 +28,6 @@ export class Game {
         this.thumbnailPath = parsedXML.getElementsByTagName('thumbnail').item(0).innerHTML;
         this.description = parsedXML.getElementsByTagName('description').item(0).textContent;
 
-        const newParsed = parser.parseFromString(
-          '<!doctype html><body>' + x,
-          'text/html');
-        this.description = newParsed.getElementsByTagName('description').item(0).textContent;
         this.minPlayers = +parsedXML.getElementsByTagName('minplayers').item(0).getAttribute('value');
         this.maxPlayers = +parsedXML.getElementsByTagName('maxplayers').item(0).getAttribute('value');
         this.playingTime = +parsedXML.getElementsByTagName('playingtime').item(0).getAttribute('value');

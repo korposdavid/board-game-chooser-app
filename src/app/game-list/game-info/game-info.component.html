@@ -9,7 +9,7 @@
     <p class="list-group-item-text">Playtime: ~{{game.playingTime}} minutes</p>
     <p class="list-group-item-text">Minimum Age: {{game.minAge}}</p>
 
-    <p class="list-group-item-text text-justify">{{game.description}}</p>
+    <p class="list-group-item-text text-justify" [innerHTML]="game.description"></p>
   </div>
 </a>
 
