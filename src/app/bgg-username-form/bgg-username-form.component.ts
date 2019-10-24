@@ -8,6 +8,7 @@ import {NgForm} from '@angular/forms';
 })
 export class BggUsernameFormComponent implements OnInit {
   @Output() username = new EventEmitter<string>();
+  private actualUsername: string;
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class BggUsernameFormComponent implements OnInit {
 
   private addUser(form: NgForm) {
     const newUser = form.value.username;
-    console.log(newUser);
+    this.actualUsername = newUser;
     this.username.emit(newUser);
   }
 }
