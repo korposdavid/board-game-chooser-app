@@ -11,6 +11,7 @@ export class AppComponent {
   private duration: number;
   private playerCount: number;
   private didFilter = false;
+  private username: string;
 
   setDurationFilter($event: number) {
     this.duration = $event;
@@ -20,5 +21,9 @@ export class AppComponent {
   setPlayerCountFilter($event: number) {
     this.playerCount = $event;
     this.didFilter = true;
+  }
+
+  setUsername($event: string) {
+    this.username = $event;
   }
 }

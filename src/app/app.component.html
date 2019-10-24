@@ -3,7 +3,11 @@
   <div class="row">
     <app-game-filter-form (duration)="setDurationFilter($event)"
                           (playerCount)="setPlayerCountFilter($event)"></app-game-filter-form>
-    <app-bgg-username-form></app-bgg-username-form>
-    <app-game-list [countFilter]="playerCount" [durationFilter]="duration" [filtered]="didFilter"></app-game-list>
+    <app-bgg-username-form (username)="setUsername($event)"></app-bgg-username-form>
+  </div>
+
+  <div class="row">
+    <app-game-list [countFilter]="playerCount" [durationFilter]="duration" [filtered]="didFilter"
+                   [username]="username"></app-game-list>
   </div>
 </div>

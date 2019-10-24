@@ -11,24 +11,27 @@ export class GameListComponent implements OnInit, OnChanges {
   @Input() private durationFilter: number;
   @Input() private countFilter: number;
   @Input() private filtered: boolean;
+  @Input() private username: string;
   private games: Game[] = [];
   private filteredGames: Game[];
   constructor(private http: HttpClient) {
   }
   ngOnInit() {
-    this.getGameList('dkorp');
     this.sortGameList();
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.countFilter || changes.durationFilter) {
       this.filterGameList();
+    } else if (changes.username) {
+      this.games = [];
+      this.getGameList();
     }
   }
 
-  private getGameList(username: string) {
+  private getGameList() {
     const parser = new DOMParser();
     let items: HTMLCollectionOf<Element>;
-    const linkToFetch = 'https://www.boardgamegeek.com/xmlapi2/collection?excludesubtype=boardgameexpansion&username=' + username;
+    const linkToFetch = 'https://www.boardgamegeek.com/xmlapi2/collection?excludesubtype=boardgameexpansion&username=' + this.username;
     this.http.get(linkToFetch, {responseType: 'text'}).subscribe(
       x => {
         items = parser.parseFromString(x, 'application/xml').getElementsByTagName('item');
