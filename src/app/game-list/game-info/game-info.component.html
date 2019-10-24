@@ -1,11 +1,15 @@
 <a href="#" class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading" [innerText]="game.name"></h4>
-    <p class="list-group-item-text">{{game.minPlayers}} - {{game.maxPlayers}} players</p>
-    <p class="list-group-item-text">~{{game.playingTime}} minutes</p>
 
-  </div>
-  <span class="pull-right">
-        <img [src]="game.thumbnailPath" alt="{{game.name}}" class="img-responsive" style="max-height: 80px;">
+  <div class="pull-left">
+    <span class="pull-right">
+        <img [src]="game.imagePath" alt="{{game.name}}" class="img-responsive" style="max-height: 200px; margin: 3px;">
       </span>
+    <h4 class="list-group-item-heading" [innerText]="game.name + ' (' + game.yearPublished + ')'"></h4>
+    <p class="list-group-item-text">{{game.minPlayers}} - {{game.maxPlayers}} players</p>
+    <p class="list-group-item-text">Playtime: ~{{game.playingTime}} minutes</p>
+    <p class="list-group-item-text">Minimum Age: {{game.minAge}}</p>
+
+    <p class="list-group-item-text text-justify">{{game.description}}</p>
+  </div>
 </a>
+

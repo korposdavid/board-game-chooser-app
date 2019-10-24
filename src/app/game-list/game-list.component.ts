@@ -65,6 +65,5 @@ export class GameListComponent implements OnInit, OnChanges {
 
   setClickedGame($event: Game) {
     this.clickedGame = $event;
-    console.log(this.clickedGame);
   }
 }

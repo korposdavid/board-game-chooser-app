@@ -6,6 +6,9 @@ export class Game {
   minPlayers: number;
   maxPlayers: number;
   playingTime: number;
+  minAge: number;
+  yearPublished: number;
+  description: string;
 
   constructor(
     public id: string,
@@ -19,12 +22,20 @@ export class Game {
     const linkToFetch = 'https://www.boardgamegeek.com/xmlapi2/thing?id=' + this.id;
     this.http.get(linkToFetch, {responseType: 'text'}).subscribe(
       x => {
-        this.imagePath = parser.parseFromString(x, 'application/xml').getElementsByTagName('image').item(0).innerHTML;
-        this.thumbnailPath = parser.parseFromString(x, 'application/xml').getElementsByTagName('thumbnail').item(0).innerHTML;
+        const parsedXML = parser.parseFromString(x, 'application/xml');
+        this.imagePath = parsedXML.getElementsByTagName('image').item(0).innerHTML;
+        this.thumbnailPath = parsedXML.getElementsByTagName('thumbnail').item(0).innerHTML;
+        this.description = parsedXML.getElementsByTagName('description').item(0).textContent;
 
-        this.minPlayers = +parser.parseFromString(x, 'application/xml').getElementsByTagName('minplayers').item(0).getAttribute('value');
-        this.maxPlayers = +parser.parseFromString(x, 'application/xml').getElementsByTagName('maxplayers').item(0).getAttribute('value');
-        this.playingTime = +parser.parseFromString(x, 'application/xml').getElementsByTagName('playingtime').item(0).getAttribute('value');
+        const newParsed = parser.parseFromString(
+          '<!doctype html><body>' + x,
+          'text/html');
+        this.description = newParsed.getElementsByTagName('description').item(0).textContent;
+        this.minPlayers = +parsedXML.getElementsByTagName('minplayers').item(0).getAttribute('value');
+        this.maxPlayers = +parsedXML.getElementsByTagName('maxplayers').item(0).getAttribute('value');
+        this.playingTime = +parsedXML.getElementsByTagName('playingtime').item(0).getAttribute('value');
+        this.minAge = +parsedXML.getElementsByTagName('minage').item(0).getAttribute('value');
+        this.yearPublished = +parsedXML.getElementsByTagName('yearpublished').item(0).getAttribute('value');
       });
   }
 }
